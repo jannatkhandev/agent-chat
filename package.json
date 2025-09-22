@@ -32,7 +32,6 @@
     "lucide-react": "^0.544.0",
     "nanoid": "^5.1.5",
     "next": "15.5.3",
-    "prism": "link:react-syntax-highlighter/dist/esm/styles/prism",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-markdown": "^10.1.0",
