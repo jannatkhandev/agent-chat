@@ -27,7 +27,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
-import { PlusCircle, MessageSquare } from "lucide-react"
+import { PlusCircle, Bot } from "lucide-react"
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea"
 import { isAuthenticated } from "@/lib/auth-server"
@@ -72,7 +72,7 @@ export default async function Page() {
           <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl space-y-8">
             {/* Icon */}
             <div className="flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full">
-              <MessageSquare className="w-10 h-10 text-primary" />
+              <Bot className="w-10 h-10 text-primary" />
             </div>
             
             {/* Headings */}

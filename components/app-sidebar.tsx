@@ -38,7 +38,7 @@ const data = {
   teams: [
     {
       name: "Agent Chat",
-      logo: GalleryVerticalEnd,
+      logo: Bot,
       plan: "Chat with agents",
     }
   ],
@@ -99,12 +99,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const navMain = [
     {
       title: "Agents",
-      url: "#",
+      url: "#agents",
       icon: Bot,
       isActive: true,
       items: agents.length > 0 ? agents.map(agent => ({
         title: agent.name,
-        url: "#",
+        url: `#${agent.name}`,
         onClick: () => {
           setSelectedAgent(agent)
           setIsAgentDialogOpen(true)

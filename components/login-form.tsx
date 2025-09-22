@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { Loader2, User } from "lucide-react";
+import { Loader2, User, Users } from "lucide-react";
 import Link from "next/link"
 import { forgetPassword, signIn } from "@/lib/auth-client"
 
@@ -68,6 +68,16 @@ export function LoginForm({
         <p className="text-muted-foreground text-sm text-balance">
           Enter your email below to login to your account
         </p>
+        {error && (
+          <div className="text-destructive text-sm text-center p-2 bg-destructive/10 rounded-md">
+            {error}
+          </div>
+        )}
+        {registered && (
+          <div className="text-green-600 text-sm text-center p-2 bg-green-50 rounded-md">
+            Registration successful! Please login with your credentials.
+          </div>
+        )}
       </div>
       <div className="grid gap-6">
         <div className="grid gap-3">
@@ -138,6 +148,30 @@ export function LoginForm({
             />
           </svg>
           Login with GitHub
+        </Button>
+        <Button 
+          variant="outline" 
+          className="w-full" 
+          type="button"
+          disabled={isLoading}
+          onClick={async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+              const { data, error } = await signIn.email({
+                email: "jannatkhandev@gmail.com",
+                password: "abcd1234",
+              });
+              if (error) throw error;
+              router.push("/dashboard");
+            } catch (error: any) {
+              setError(error.message || "Demo login failed");
+              setIsLoading(false);
+            }
+          }}
+        >
+          <Users className="mr-2 h-4 w-4" />
+          Login with Demo User
         </Button>
       </div>
       <div className="text-center text-sm">

@@ -56,7 +56,7 @@ export function NavMain({
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
+                    <SidebarMenuSubItem key={subItem.url}>
                       <SidebarMenuSubButton asChild={!subItem.disabled}>
                         {subItem.disabled ? (
                           <span className="text-muted-foreground italic">
