@@ -124,7 +124,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/agent-chat.git
+   git clone https://github.com/jannatkhandev/agent-chat.git
    cd agent-chat
    ```
 
