@@ -50,7 +50,7 @@ export function LoginForm({
           password: password,
         });
         if (error) throw error;
-      router.push("/dashboard");
+      router.push("/");
     } catch (error: any) {
       if (error.status === 403) {
         setError("Please verify your email address before logging in");
@@ -163,7 +163,7 @@ export function LoginForm({
                 password: "abcd1234",
               });
               if (error) throw error;
-              router.push("/dashboard");
+              router.push("/");
             } catch (error: any) {
               setError(error.message || "Demo login failed");
               setIsLoading(false);
