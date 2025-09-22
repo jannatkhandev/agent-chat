@@ -29,6 +29,8 @@ export function NavMain({
     items?: {
       title: string
       url: string
+      disabled?: boolean
+      onClick?: () => void
     }[]
   }[]
 }) {
@@ -55,10 +57,23 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
+                      <SidebarMenuSubButton asChild={!subItem.disabled}>
+                        {subItem.disabled ? (
+                          <span className="text-muted-foreground italic">
+                            {subItem.title}
+                          </span>
+                        ) : subItem.onClick ? (
+                          <button 
+                            onClick={subItem.onClick}
+                            className="w-full text-left"
+                          >
+                            <span>{subItem.title}</span>
+                          </button>
+                        ) : (
+                          <a href={subItem.url}>
+                            <span>{subItem.title}</span>
+                          </a>
+                        )}
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

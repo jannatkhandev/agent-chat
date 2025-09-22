@@ -1,3 +1,16 @@
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
@@ -14,7 +27,21 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
-export default function Page() {
+import { PlusCircle, MessageSquare } from "lucide-react"
+import { cn } from "@/lib/utils";
+import { Textarea } from "@/components/ui/textarea"
+import { isAuthenticated } from "@/lib/auth-server"
+import { redirect } from "next/navigation"
+import { AgentMarquee } from "@/components/agent-marquee"
+import { SearchInput } from "@/components/search-input"
+
+
+
+export default async function Page() {
+    const authenticated = await isAuthenticated();
+    if (!authenticated) {
+      return redirect("/login");
+    }
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -30,24 +57,79 @@ export default function Page() {
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                    Building Your Application
+                    Home
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  <BreadcrumbPage>Browse Agents</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-            <div className="bg-muted/50 aspect-video rounded-xl" />
-          </div> */}
-          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+        <div className="flex flex-1 flex-col items-center justify-center min-h-0 p-4 pt-0">
+          <div className="flex flex-col items-center justify-center flex-1 w-full max-w-4xl space-y-8">
+            {/* Icon */}
+            <div className="flex items-center justify-center w-20 h-20 bg-primary/10 rounded-full">
+              <MessageSquare className="w-10 h-10 text-primary" />
+            </div>
+            
+            {/* Headings */}
+            <div className="text-center space-y-2">
+              <h1 className="text-4xl font-bold tracking-tight">Welcome to Agent Chat</h1>
+              <p className="text-xl text-muted-foreground">Chat with public agents or create your own</p>
+            </div>
+            
+            {/* Search and Create Button */}
+            <div className="flex gap-3 items-center w-full max-w-md">
+              <div className="flex-1">
+                <SearchInput />
+              </div>
+              <Dialog>
+                <form>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      <PlusCircle className="w-4 h-4 mr-1" /> New Agent
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>New Agent</DialogTitle>
+                      <DialogDescription>
+                        Enter details of your new agent
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-4">
+                      <div className="grid gap-3">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" name="name" />
+                      </div>
+                      <div className="grid gap-3">
+                        <Label htmlFor="about">About</Label>
+                        <Input id="about" name="about" defaultValue="" />
+                      </div>
+                      <div className="grid w-full gap-3">
+                        <Label htmlFor="prompt">Your message</Label>
+                        <Textarea placeholder="Type system prompt here." id="prompt" />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                      </DialogClose>
+                      <Button type="submit">Save changes</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </form>
+              </Dialog>
+            </div>
+            
+            {/* Marquee */}
+            <div className="w-full">
+              <AgentMarquee />
+            </div>
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>

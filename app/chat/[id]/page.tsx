@@ -15,7 +15,14 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
-export default function Page() {
+interface PageProps {
+  params: Promise<{
+    id: string
+  }>
+}
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -31,19 +38,19 @@ export default function Page() {
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                    Building Your Application
+                    Chats
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  <BreadcrumbPage>{id}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <ChatBox/>
+          <ChatBox conversationId={id} />
         </div>
       </SidebarInset>
     </SidebarProvider>
