@@ -6,5 +6,5 @@ const signInWithGithub = async () => {
         provider: "github"
     })
 }
-export const { signOut, signUp, useSession, forgetPassword, resetPassword } = authClient
+export const { signIn, signOut, signUp, useSession, forgetPassword, resetPassword } = authClient
 export { signInWithGithub }

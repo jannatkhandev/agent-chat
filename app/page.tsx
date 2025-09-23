@@ -34,6 +34,7 @@ import { isAuthenticated } from "@/lib/auth-server"
 import { redirect } from "next/navigation"
 import { AgentMarquee } from "@/components/agent-marquee"
 import { SearchInput } from "@/components/search-input"
+import { CreateAgentDialog } from "@/components/create-agent-dialog"
 
 
 
@@ -86,43 +87,11 @@ export default async function Page() {
               <div className="flex-1">
                 <SearchInput />
               </div>
-              <Dialog>
-                <form>
-                  <DialogTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      <PlusCircle className="w-4 h-4 mr-1" /> New Agent
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>New Agent</DialogTitle>
-                      <DialogDescription>
-                        Enter details of your new agent
-                      </DialogDescription>
-                    </DialogHeader>
-                    <div className="grid gap-4">
-                      <div className="grid gap-3">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" name="name" />
-                      </div>
-                      <div className="grid gap-3">
-                        <Label htmlFor="about">About</Label>
-                        <Input id="about" name="about" defaultValue="" />
-                      </div>
-                      <div className="grid w-full gap-3">
-                        <Label htmlFor="prompt">Your message</Label>
-                        <Textarea placeholder="Type system prompt here." id="prompt" />
-                      </div>
-                    </div>
-                    <DialogFooter>
-                      <DialogClose asChild>
-                        <Button variant="outline">Cancel</Button>
-                      </DialogClose>
-                      <Button type="submit">Save changes</Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </form>
-              </Dialog>
+              <CreateAgentDialog>
+                <Button variant="outline" size="sm">
+                  <PlusCircle className="w-4 h-4 mr-1" /> New Agent
+                </Button>
+              </CreateAgentDialog>
             </div>
             
             {/* Marquee */}
