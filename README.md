@@ -1,36 +1,34 @@
-# 🤖 Agent Chat
+# 📸 Fotofi
 
-> A robust, scalable, and secure AI-powered chat platform built with modern web technologies
+> A beautiful, secure event photo gallery platform built with modern web technologies
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat-square&logo=prisma)](https://prisma.io/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 
-**Agent Chat** is a modern, feature-rich platform that enables users to interact with AI agents, create custom agents, and manage conversations seamlessly. Built with enterprise-grade architecture and security practices.
+**Fotofi** is a modern, feature-rich platform that enables event organizers to create beautiful photo galleries where guests can upload and access photos from events. Built with enterprise-grade architecture and security practices.
 
 ## ✨ Features
 
 ### 🚀 Core Functionality
-- **Interactive AI Chat**: Real-time streaming conversations with AI agents
-- **Custom Agent Creation**: Build and configure your own AI agents with custom prompts
-- **Agent Discovery**: Browse and interact with public agents created by the community
-- **Conversation Management**: Persistent chat history with full conversation tracking
+- **Event Galleries**: Create beautiful, organized photo galleries for your events
+- **Guest Photo Upload**: Easy photo upload interface for event guests
+- **Photo Access**: Secure passcode-protected galleries for privacy
+- **Photo Download**: Guests can download their photos and event memories
 - **Responsive Design**: Beautiful, mobile-first interface that works on all devices
 
 ### 🔐 Authentication & Security
-- **Multi-Provider Authentication**: Email/password, GitHub OAuth, and demo login
-- **Session Management**: Secure session handling with automatic expiration
-- **Email Verification**: Account verification with automated email flows
-- **Password Reset**: Self-service password recovery system
+- **Passcode Protection**: Secure passcode access for event galleries
 - **Data Protection**: User data isolation and privacy controls
+- **Secure Uploads**: Safe and reliable photo upload system
 
 ### 🎨 User Experience
 - **Modern UI Components**: Built with shadcn/ui and Radix UI primitives
 - **Dark/Light Mode**: System-aware theme switching
-- **Search & Discovery**: Advanced agent search with real-time filtering
-- **Sidebar Navigation**: Dynamic navigation showing user's agents and recent chats
-- **Markdown Support**: Rich text rendering for AI responses
+- **Beautiful Galleries**: Stunning gallery layouts with responsive grids
+- **Easy Navigation**: Intuitive interface for browsing and uploading photos
+- **Mobile Optimized**: Perfect experience on all devices
 
 ## 🏗️ Architecture
 
@@ -42,18 +40,18 @@
 │                 │    │                 │    │                 │
 │ • Next.js 15    │◄──►│ • API Routes    │◄──►│ • PostgreSQL    │
 │ • React 19      │    │ • Server Actions│    │ • Prisma ORM    │
-│ • TypeScript    │    │ • AI SDK v5     │    │ • Supabase      │
+│ • TypeScript    │    │ • File Upload   │    │ • Supabase      │
 │ • Tailwind CSS  │    │ • Better Auth   │    │                 │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
         │                       │                       │
         │                       │                       │
         ▼                       ▼                       ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   AI Services   │    │   Email System  │    │   File Storage  │
+│   Image Hosting │    │   Email System  │    │   File Storage  │
 │                 │    │                 │    │                 │
-│ • Google AI     │    │ • Resend API    │    │ • Static Assets │
-│ • Gemini 2.5    │    │ • React Email   │    │ • Public Files  │
-│ • Streaming     │    │ • Verification  │    │                 │
+│ • Image CDN     │    │ • Resend API    │    │ • Static Assets │
+│ • Optimization  │    │ • React Email   │    │ • Public Files  │
+│ • Thumbnails    │    │ • Notifications │    │ • Photo Storage │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
 ```
 
@@ -68,13 +66,13 @@
 #### **2. Security**
 - **Type Safety**: End-to-end TypeScript for compile-time error prevention
 - **Input Validation**: Comprehensive data validation at API boundaries
-- **Authentication**: Industry-standard OAuth and session management
+- **Passcode Protection**: Secure access control for event galleries
 - **SQL Injection Protection**: Prisma ORM prevents SQL injection attacks
 - **XSS Protection**: React's built-in XSS protection with additional sanitization
 
 #### **3. Extensibility**
 - **Modular Architecture**: Component-based design for easy feature additions
-- **Plugin System**: Extensible AI provider integration
+- **File Upload System**: Extensible photo upload and storage integration
 - **API-First Design**: RESTful APIs ready for mobile apps and integrations
 - **Event-Driven**: Hooks system for custom business logic
 
@@ -101,8 +99,6 @@
 |------------|---------|---------|
 | **Prisma** | 6.16.2 | Type-safe database ORM |
 | **Better Auth** | 1.3.13 | Modern authentication library |
-| **AI SDK** | 5.0.48 | AI model integration and streaming |
-| **Google AI** | 2.0.15 | Gemini model integration |
 | **Resend** | 6.1.0 | Transactional email service |
 
 ### **Database & Infrastructure**
@@ -117,15 +113,14 @@
 ### **Prerequisites**
 - Node.js 18+ and npm/pnpm/yarn
 - PostgreSQL database (Supabase recommended)
-- Google AI API key
-- Resend API key (for emails)
+- Resend API key (for emails, optional)
 
 ### **Environment Setup**
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/jannatkhandev/agent-chat.git
-   cd agent-chat
+   git clone https://github.com/jannatkhandev/fotofi-app.git
+   cd fotofi-app
    ```
 
 2. **Install dependencies**
@@ -150,10 +145,7 @@
    BETTER_AUTH_SECRET="your_32_character_secret_key"
    BETTER_AUTH_URL="http://localhost:3000"
    
-   # AI Services
-   GOOGLE_GENERATIVE_AI_API_KEY="your_google_ai_api_key"
-   
-   # Email Service
+   # Email Service (Optional)
    RESEND_API_KEY="your_resend_api_key"
    EMAIL_FROM="noreply@yourdomain.com"
    
@@ -180,30 +172,19 @@
 
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### **🎮 Demo Access**
-
-Use the "Login with Demo User" button on the login page with these credentials:
-- **Email**: `jannatkhandev@gmail.com`
-- **Password**: `abcd1234`
-
 ## 📁 Project Structure
 
 ```
-agent-chat/
+fotofi-app/
 ├── app/                    # Next.js App Router
 │   ├── api/               # API routes
-│   │   ├── agents/        # Agent management endpoints
-│   │   ├── chat/          # Chat streaming endpoint
-│   │   ├── conversations/ # Conversation management
 │   │   └── auth/          # Authentication endpoints
+│   ├── [event]/           # Dynamic event gallery pages
 │   ├── login/             # Login page
 │   ├── register/          # Registration page
-│   ├── chat/[id]/         # Dynamic chat pages
 │   └── layout.tsx         # Root layout
 ├── components/            # React components
 │   ├── ui/               # Base UI components (shadcn/ui)
-│   ├── agent-*.tsx       # Agent-related components
-│   ├── app-*.tsx         # App layout components
 │   └── *.tsx             # Feature components
 ├── lib/                  # Utility libraries
 │   ├── auth.ts           # Authentication utilities
@@ -275,8 +256,7 @@ npm start
 Ensure these variables are set in your production environment:
 - `DATABASE_URL` and `DIRECT_URL`
 - `BETTER_AUTH_SECRET` and `BETTER_AUTH_URL`
-- `GOOGLE_GENERATIVE_AI_API_KEY`
-- `RESEND_API_KEY` and `EMAIL_FROM`
+- `RESEND_API_KEY` and `EMAIL_FROM` (optional)
 - `NEXT_PUBLIC_APP_URL`
 
 ## 🤝 Contributing
@@ -305,7 +285,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [shadcn/ui](https://ui.shadcn.com/) for beautiful, accessible components
 - [Prisma](https://prisma.io/) for the fantastic database toolkit
 - [Better Auth](https://www.better-auth.com/) for modern authentication
-- [Vercel AI SDK](https://sdk.vercel.ai/) for AI integration capabilities
 
 ## 📞 Support
 

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Agent Chat",
-  description: "Chat with agents",
+  title: "Fotofi - Event Photo Galleries",
+  description: "Share and collect photos from your events. Create beautiful galleries where guests can upload and access memories.",
 };
 
 export default function RootLayout({

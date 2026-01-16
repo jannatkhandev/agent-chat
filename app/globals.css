@@ -138,6 +138,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(400%);
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .animate-scan-line {
+    animation: scan-line 2s ease-in-out infinite;
+  }
+}
 @theme inline {
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
